@@ -3,6 +3,8 @@ package com.example.sid.sidmobile;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +18,9 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +37,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -40,6 +45,52 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+       /* fragmentManager=getSupportFragmentManager();
+        fragmentTransaction=fragmentManager.beginTransaction();
+       */
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                drawer.closeDrawers();
+
+                if (menuItem.getItemId() == R.id.nav_info) {
+                    FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
+                    xfragmentTransaction.replace(R.id.containerView, new TestTab()).commit();
+                }
+                if (menuItem.getItemId() == R.id.nav_design) {
+                    FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
+                    xfragmentTransaction.replace(R.id.containerView, new TestTab()).commit();
+                }
+                if (menuItem.getItemId() == R.id.nav_frame) {
+                    FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
+                    xfragmentTransaction.replace(R.id.containerView, new TestTab()).commit();
+                }
+                if (menuItem.getItemId() == R.id.nav_image) {
+                    FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
+                    xfragmentTransaction.replace(R.id.containerView, new TestTab()).commit();
+                }
+                if (menuItem.getItemId() == R.id.nav_proxy) {
+                    FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
+                    xfragmentTransaction.replace(R.id.containerView, new TestTab()).commit();
+                }
+                if (menuItem.getItemId() == R.id.nav_make) {
+                    FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
+                    xfragmentTransaction.replace(R.id.containerView, new TestTab()).commit();
+                }
+                if (menuItem.getItemId() == R.id.nav_proxy) {
+                    FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
+                    xfragmentTransaction.replace(R.id.containerView, new TestTab()).commit();
+                }
+
+                return false;
+            }
+
+        });
+
     }
 
     @Override
@@ -80,21 +131,19 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_info) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
         } else if (id == R.id.nav_design) {
 
-        } else if (id == R.id.nav_base) {
+        } else if (id == R.id.nav_frame) {
 
-        } else if(id==R.id.nav_image ){
+        } else if (id == R.id.nav_image) {
 
-        } else if (id==R.id.nav_proxy){
+        } else if (id == R.id.nav_proxy) {
+
+        } else if (id == R.id.nav_make) {
+
+        } else if(id==R.id.nav_service){
 
         }
 
