@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign In"
-            android:id="@+id/button3"
+            android:id="@+id/btn_signIn"
             android:layout_weight="1" />
 
         <CheckBox
@@ -85,14 +85,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Join Us"
-            android:id="@+id/button2"
+            android:id="@+id/btn_join"
             android:layout_weight="1" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Find ID/PW"
-            android:id="@+id/button"
+            android:id="@+id/btn_find"
             android:layout_weight="1" />
     </LinearLayout>
 

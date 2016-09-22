@@ -1,12 +1,12 @@
 package com.example.sid.sidmobile;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +14,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.example.sid.sidmobile.frame.FrameTab;
+import com.example.sid.sidmobile.design.DesignTab;
+import com.example.sid.sidmobile.image.ImageTab;
+import com.example.sid.sidmobile.info.InfoTab;
+import com.example.sid.sidmobile.make.MakeTab;
+import com.example.sid.sidmobile.member.FindFragment;
+import com.example.sid.sidmobile.member.JoinFragment;
+import com.example.sid.sidmobile.proxy.ProxyTab;
+import com.example.sid.sidmobile.service.ServiceFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -21,12 +34,14 @@ public class MainActivity extends AppCompatActivity
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     DrawerLayout drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+/*
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +51,7 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+*/
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -52,6 +68,40 @@ public class MainActivity extends AppCompatActivity
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
+        View headerLayout =
+                navigationView.getHeaderView(0);
+
+        Button btn_join = (Button)headerLayout.findViewById(R.id.btn_join);
+
+        btn_join.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawers();
+                setTitle("Join");
+                FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
+                xfragmentTransaction.replace(R.id.containerView, new JoinFragment()).commit();
+            }
+        });
+
+        Button btn_signin = (Button)headerLayout.findViewById(R.id.btn_signIn);
+        btn_signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawers();
+                Toast.makeText(MainActivity.this, "Sign in", Toast.LENGTH_SHORT).show();
+            }
+        });
+        Button btn_find = (Button)headerLayout.findViewById(R.id.btn_find);
+        btn_find.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawers();
+                setTitle("Find");
+                FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
+                xfragmentTransaction.replace(R.id.containerView, new FindFragment()).commit();
+            }
+        });
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -59,31 +109,31 @@ public class MainActivity extends AppCompatActivity
 
                 if (menuItem.getItemId() == R.id.nav_info) {
                     FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView, new TestTab()).commit();
+                    xfragmentTransaction.replace(R.id.containerView, new InfoTab()).commit();
                 }
                 if (menuItem.getItemId() == R.id.nav_design) {
                     FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView, new TestTab()).commit();
+                    xfragmentTransaction.replace(R.id.containerView, new DesignTab()).commit();
                 }
                 if (menuItem.getItemId() == R.id.nav_frame) {
                     FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView, new TestTab()).commit();
+                    xfragmentTransaction.replace(R.id.containerView, new FrameTab()).commit();
                 }
                 if (menuItem.getItemId() == R.id.nav_image) {
                     FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView, new TestTab()).commit();
+                    xfragmentTransaction.replace(R.id.containerView, new ImageTab()).commit();
                 }
                 if (menuItem.getItemId() == R.id.nav_proxy) {
                     FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView, new TestTab()).commit();
+                    xfragmentTransaction.replace(R.id.containerView, new ProxyTab()).commit();
                 }
                 if (menuItem.getItemId() == R.id.nav_make) {
                     FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView, new TestTab()).commit();
+                    xfragmentTransaction.replace(R.id.containerView, new MakeTab()).commit();
                 }
-                if (menuItem.getItemId() == R.id.nav_proxy) {
+                if (menuItem.getItemId() == R.id.nav_service) {
                     FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
-                    xfragmentTransaction.replace(R.id.containerView, new TestTab()).commit();
+                    xfragmentTransaction.replace(R.id.containerView, new ServiceFragment()).commit();
                 }
 
                 return false;
@@ -125,30 +175,12 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
+
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_info) {
-            // Handle the camera action
-        } else if (id == R.id.nav_design) {
-
-        } else if (id == R.id.nav_frame) {
-
-        } else if (id == R.id.nav_image) {
-
-        } else if (id == R.id.nav_proxy) {
-
-        } else if (id == R.id.nav_make) {
-
-        } else if(id==R.id.nav_service){
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
     }
 }
