@@ -3,46 +3,37 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_info"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Login" />
+            android:title="INFO" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_design"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="" />
+            android:title="DESIGN" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_frame"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="FRAME" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_image"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="IMAGE" />
+        <item
+            android:id="@+id/nav_proxy"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="PROXY" />
+        <item
+            android:id="@+id/nav_make"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="MAKE" />
+        <item
+            android:id="@+id/nav_service"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Customer Service" />
+
+
     </group>
 
-    <item android:title="INFO">
-        <menu>
-            <item
-                android:id="@+id/nav_design"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Design" />
-            <item
-                android:id="@+id/nav_base"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Base" />
-            <item
-                android:id="@+id/nav_image"
-                android:title="Image"
-                />
-            <item
-                android:id="@+id/nav_proxy"
-                android:title="Proxy"
-                />
-            <item
-                android:id="@+id/nav_make"
-                android:title="Make"
-                />
-        </menu>
-    </item>
+
 
 </menu>
