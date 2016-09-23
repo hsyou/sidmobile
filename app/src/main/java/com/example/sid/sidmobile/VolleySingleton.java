@@ -20,7 +20,7 @@ public class VolleySingleton {
     private static Context mCtx;
 
     private VolleySingleton(Context context){
-        mCtx=context;
+        mCtx=context;  
         mRequestQueue = Volley.newRequestQueue(context);
 
         mImageLoader = new ImageLoader(this.mRequestQueue, new ImageLoader.ImageCache() {
