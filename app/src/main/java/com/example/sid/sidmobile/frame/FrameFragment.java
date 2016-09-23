@@ -20,10 +20,9 @@ public class FrameFragment extends Fragment {
 
     private final String server_url="";
 
-    public FrameFragment(){
+    public FrameFragment() {
 
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
