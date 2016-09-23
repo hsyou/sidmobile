@@ -31,6 +31,5 @@ public class FrameFragment extends Fragment {
 
         final RequestQueue queue= VolleySingleton.getInstance(getActivity()).getRequestQueue();
 
-        ViewGroup rootView =(ViewGroup)inflater.inflate(R.layout)
     }
 }
