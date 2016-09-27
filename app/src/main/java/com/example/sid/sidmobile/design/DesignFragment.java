@@ -17,6 +17,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.sid.sidmobile.R;
 import com.example.sid.sidmobile.VolleySingleton;
+import com.example.sid.sidmobile.vo.Member;
+import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
@@ -33,8 +35,13 @@ public class DesignFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_design_one, container, false);
 
         tv=(TextView)rootView.findViewById(R.id.textView);
-
-        StringRequest obj=new StringRequest(Request.Method.GET, server_url, new Response.Listener<String>() {
+        Gson gson = new Gson();
+        Member member = new Member();
+        member.setNickname("nick");
+        member.setEmail("asd@asd.com");
+        member.setAddress("here");
+        String str=gson.toJson(member);
+        StringRequest obj=new StringRequest(Request.Method.GET, server_url,new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
                 tv.setText(s.toString());
