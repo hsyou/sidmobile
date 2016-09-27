@@ -1,113 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <LinearLayout
-        android:id="@+id/layout1"
+    android:layout_width="match_parent">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
-
-        <Button
-            android:id="@+id/admin_0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="일반회원" />
-
-        <Button
-            android:id="@+id/admin_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="판매자회원" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/layout1"
+        android:layout_height="match_parent"
+        android:background="#eeeeee"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="약관동의" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="전체 이용약관에 모두 동의합니다.(필수/선택 모두 동의)" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="필수 이용약관에 모두 동의합니다." />
-
-        <RelativeLayout
-            android:id="@+id/rel"
+        <LinearLayout
+            android:id="@+id/layout1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
 
-            <CheckBox
-                android:id="@+id/checkBox1"
+            <Button
+                android:id="@+id/admin_0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="[필수]SID 이용약관" />
+                android:layout_weight="1"
+                android:text="일반회원" />
+
+            <Button
+                android:id="@+id/admin_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="판매자회원" />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/layout1"
+            android:layout_margin="10dp"
+            android:background="#ffffff"
+            android:orientation="vertical">
 
             <TextView
-                android:text="전체보기"
-                android:layout_margin="10dp"
-                android:layout_alignBaseline="@+id/checkBox1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="" />
-        </RelativeLayout>
+                android:text="약관동의" />
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/layout2"
-        android:orientation="vertical">
+            <CheckBox
+                android:id="@+id/chk_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전체 이용약관에 모두 동의합니다.(필수/선택 모두 동의)" />
 
-        <TextView
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#ff0000ff" />
+
+            <CheckBox
+                android:id="@+id/chk_must"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:text="필수 이용약관에 모두 동의합니다." />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/chk_must1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="[필수]SID 이용약관" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/chk_must1"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="10dp"
+                    android:onClick=""
+                    android:text="전체보기" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/chk_must2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="[필수]전자금융거래 이용약관" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/chk_must2"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="10dp"
+                    android:onClick=""
+                    android:text="전체보기" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#ff0000ff" />
+
+            <CheckBox
+                android:id="@+id/chk_choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:text="선택 이용약관에 모두 동의합니다." />
+
+
+            <CheckBox
+                android:id="@+id/chk_choice1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="[선택]이벤트/쇼핑정보 수신동의" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/layout2"
+            android:layout_margin="10dp"
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="정보입력" />
+
+            <EditText
+                android:id="@+id/nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nickname"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:padding="5dp"
+                android:text="띄어쓰기 없이 4~12자 사용할 수 있습니다." />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="E-Mail"
+                android:inputType="textEmailAddress" />
+
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:padding="5dp"
+                android:text="안전한 사용을 위해 영문,숫자,특수문자 조합 6~15자를 사용해 주세요." />
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone"
+                android:inputType="phone" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/address"
+                    android:hint="Address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignBaseline="@id/address"
+                    android:layout_margin="10dp"
+                    android:onClick=""
+                    android:text="Find" />
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/join_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="정보입력" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nickname" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="E-Mail"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone"
-            android:inputType="phone" />
+            android:layout_below="@+id/layout3"
+            android:layout_centerInParent="true"
+            android:text="회원가입" />
 
 
-    </LinearLayout>
-
-
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
