@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#eeeeee"
         android:orientation="vertical">
-
         <LinearLayout
             android:id="@+id/layout1"
             android:layout_width="match_parent"
@@ -49,7 +47,6 @@
 
 
             <CheckBox
-                android:id="@+id/chk_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전체 이용약관에 모두 동의합니다.(필수/선택 모두 동의)" />
@@ -60,7 +57,6 @@
                 android:background="#ff0000ff" />
 
             <CheckBox
-                android:id="@+id/chk_must"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
@@ -71,7 +67,7 @@
                 android:layout_height="wrap_content">
 
                 <CheckBox
-                    android:id="@+id/chk_must1"
+                    android:id="@+id/checkBox1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -80,7 +76,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/chk_must1"
+                    android:layout_alignBaseline="@+id/checkBox1"
                     android:layout_alignParentRight="true"
                     android:layout_margin="10dp"
                     android:onClick=""
@@ -92,7 +88,7 @@
                 android:layout_height="wrap_content">
 
                 <CheckBox
-                    android:id="@+id/chk_must2"
+                    android:id="@+id/checkBox2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -101,7 +97,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/chk_must2"
+                    android:layout_alignBaseline="@+id/checkBox2"
                     android:layout_alignParentRight="true"
                     android:layout_margin="10dp"
                     android:onClick=""
@@ -114,7 +110,6 @@
                 android:background="#ff0000ff" />
 
             <CheckBox
-                android:id="@+id/chk_choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
@@ -122,7 +117,6 @@
 
 
             <CheckBox
-                android:id="@+id/chk_choice1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -148,7 +142,6 @@
                 android:text="정보입력" />
 
             <EditText
-                android:id="@+id/nickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nickname" />
@@ -156,12 +149,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="10sp"
                 android:padding="5dp"
-                android:text="띄어쓰기 없이 4~12자 사용할 수 있습니다."
-                android:textSize="10sp" />
+                android:text="띄어쓰기 없이 영문과 숫자를 혼합하여 4~12자 사용할 수 있습니다." />
 
             <EditText
-                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="E-Mail"
@@ -169,28 +161,19 @@
 
 
             <EditText
-                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword" />
 
-            <EditText
-                android:id="@+id/password_check"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Password Check"
-                android:inputType="textPassword" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="10sp"
                 android:padding="5dp"
-                android:text="안전한 사용을 위해 영문,숫자,특수문자 조합 6~15자를 사용해 주세요."
-                android:textSize="10sp" />
+                android:text="안전한 사용을 위해 영문,숫자,특수문자 조합 6~15자를 사용해 주세요." />
 
             <EditText
-                android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Phone"
@@ -199,34 +182,33 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <EditText
                     android:id="@+id/address"
+                    android:hint="Address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Address" />
+                   />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@id/address"
                     android:layout_alignParentRight="true"
+                    android:layout_alignBaseline="@id/address"
                     android:layout_margin="10dp"
                     android:onClick=""
                     android:text="Find" />
             </RelativeLayout>
 
 
+
         </LinearLayout>
 
         <Button
-            android:id="@+id/join_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/layout3"
             android:layout_centerInParent="true"
             android:text="회원가입" />
-
 
     </RelativeLayout>
 </ScrollView>
