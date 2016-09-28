@@ -124,6 +124,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        TextView btn_close=(TextView) headerLayout.findViewById(R.id.btn_drawer_close);
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawers();
+            }
+        });
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {

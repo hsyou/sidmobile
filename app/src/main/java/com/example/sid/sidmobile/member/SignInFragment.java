@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.sid.sidmobile.HomeFragment;
 import com.example.sid.sidmobile.R;
+import com.example.sid.sidmobile.SessionManager;
 import com.example.sid.sidmobile.service.ServiceFragment;
 import com.example.sid.sidmobile.vo.Member;
 import com.example.sid.sidmobile.vo.Result;
@@ -42,7 +43,7 @@ public class SignInFragment extends Fragment {
     Gson gson = null;
     Member member=null;
     String jsonString=null;
-
+    SessionManager session=null;
     Button btn=null;
     private final String server_url = "http://192.168.0.3:8080/mobile2.jsp";
 
@@ -58,7 +59,7 @@ public class SignInFragment extends Fragment {
 
 
 
-        btn=(Button)rootView.findViewById(R.id.btn_singin_submit);
+        btn=(Button)rootView.findViewById(R.id.btn_signIn_submit);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +81,9 @@ public class SignInFragment extends Fragment {
                                 Log.d("success","done");
                                 Result result=gson.fromJson(response.toString(),Result.class);
                                 if(result.getResult().equals("1")){
-
+                                    session=new SessionManager(getContext());
+                                    session.createLoginSession(id.getText().toString(),pw.getText().toString());
+                                    Toast.makeText(getContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                     getFragmentManager().beginTransaction().replace(R.id.containerView,new ServiceFragment()).commit();
 
                                 }else{
