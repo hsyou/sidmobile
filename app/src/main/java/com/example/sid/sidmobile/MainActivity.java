@@ -1,5 +1,6 @@
 package com.example.sid.sidmobile;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -14,8 +15,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.example.sid.sidmobile.design.DesignTab;
 import com.example.sid.sidmobile.frame.FrameTab;
 import com.example.sid.sidmobile.image.ImageTab;
@@ -26,12 +35,14 @@ import com.example.sid.sidmobile.member.JoinFragment;
 import com.example.sid.sidmobile.proxy.ProxyTab;
 import com.example.sid.sidmobile.service.ServiceFragment;
 
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     DrawerLayout drawer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +62,6 @@ public class MainActivity extends AppCompatActivity
         });
 */
 
-
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -60,6 +70,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+
+        final TextView mTextView = (TextView) findViewById(R.id.text);
 
        /* fragmentManager=getSupportFragmentManager();
         fragmentTransaction=fragmentManager.beginTransaction();
@@ -140,7 +155,10 @@ public class MainActivity extends AppCompatActivity
 
         });
 
+
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -174,12 +192,14 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        return false;
+    }
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
-    }
 }

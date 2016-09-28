@@ -12,8 +12,7 @@
         android:id="@+id/textView"
         android:layout_centerHorizontal="true"
         android:textColor="@color/colorPrimary"
-        android:text="design1"/>
-
+        android:text="가입성공"/>
 
 
 </RelativeLayout>

@@ -24,6 +24,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
-    compile files('library-1.0.19.jar')
-    compile files('gson-2.3.1.jar')
+    compile files('libs/volleyer-2.0.0.jar')
 }

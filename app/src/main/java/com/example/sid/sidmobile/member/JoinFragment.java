@@ -1,7 +1,10 @@
 package com.example.sid.sidmobile.member;
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +12,28 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.sid.sidmobile.HomeFragment;
 import com.example.sid.sidmobile.R;
+import com.example.sid.sidmobile.service.ServiceFragment;
+import com.example.sid.sidmobile.vo.Member;
+import com.example.sid.sidmobile.vo.Result;
+import com.google.gson.Gson;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
@@ -25,11 +46,18 @@ public class JoinFragment extends Fragment {
 
     EditText nickname, email, password, password_check, phone, address;
 
+    String jsonString = null;
+
+    //
+    Gson gson=null;
+    private final String server_url = "http://192.168.0.3:8080/mobile.jsp";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_join, container, false);
+
+        gson=new Gson();
 
 
         chk_all = (CheckBox) rootView.findViewById(R.id.chk_all);
@@ -43,7 +71,7 @@ public class JoinFragment extends Fragment {
         nickname = (EditText) rootView.findViewById(R.id.nickname);
         email = (EditText) rootView.findViewById(R.id.email);
         password = (EditText) rootView.findViewById(R.id.password);
-        password_check = (EditText) rootView.findViewById(R.id.password_check);
+        password_check=(EditText)rootView.findViewById(R.id.password_check);
         phone = (EditText) rootView.findViewById(R.id.phone);
         address = (EditText) rootView.findViewById(R.id.address);
 
@@ -122,6 +150,56 @@ public class JoinFragment extends Fragment {
 
                 } else if (CheckPassWord(password.getText().toString(), password_check.getText().toString()) == 4) {
                     Toast.makeText(getContext(), "비밀번호는 문자, 숫자, 특수문자의 조합으로 6~16자리로 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }else {
+
+                    RequestQueue queue = Volley.newRequestQueue(getActivity());
+
+                    Member member = new Member();
+                    member.setNickname(nickname.getText().toString());
+                    member.setEmail(email.getText().toString());
+                    member.setPwd(password.getText().toString());
+                    member.setPhone(phone.getText().toString());
+                    member.setAddress(address.getText().toString());
+                    member.setAdmin(1);
+
+                    jsonString = gson.toJson(member);
+
+                    JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.GET, server_url,null,
+                            new Response.Listener<JSONObject>()
+                            {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    // response
+                                    Log.d("success","done");
+                                    Result result=gson.fromJson(response.toString(),Result.class);
+                                    if(result.getResult().equals("1")){
+
+                                    }else{
+                                        Toast.makeText(getActivity(), "가입 실패.", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }
+                            },
+                            new Response.ErrorListener()
+                            {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    // TODO Auto-generated method stub
+                                    Log.d("ERROR","error => "+error.toString());
+                                }
+                            }
+                    ) {
+                        @Override
+                        public Map<String, String> getHeaders() throws AuthFailureError {
+                            Map<String, String>  params = new HashMap<String, String>();
+                            params.put("abc", jsonString);
+
+                            return params;
+                        }
+                    };
+                    queue.add(postRequest);
+
+                    getFragmentManager().beginTransaction().replace(R.id.containerView,new HomeFragment()).commit();
                 }
 
             }
@@ -164,4 +242,5 @@ public class JoinFragment extends Fragment {
 
         return result;
     }
+
 }

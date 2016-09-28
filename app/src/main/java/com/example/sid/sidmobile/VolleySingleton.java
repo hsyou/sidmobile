@@ -1,8 +1,9 @@
 package com.example.sid.sidmobile;
 
+
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.util.LruCache;
+import android.support.v4.util.LruCache;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -61,3 +62,5 @@ public class VolleySingleton {
         getRequestQueue().add(req);
     }
 }
+
+
