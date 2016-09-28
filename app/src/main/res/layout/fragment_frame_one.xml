@@ -3,21 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ListView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:id="@+id/tv"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/colorPrimary"
-        android:text="text 123"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn"
-        android:text="asd"/>
+        android:id="@+id/listview"></ListView>
 
 </RelativeLayout>

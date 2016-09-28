@@ -23,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.sid.sidmobile.R;
 import com.example.sid.sidmobile.VolleySingleton;
 import com.example.sid.sidmobile.vo.Member;
+import com.example.sid.sidmobile.vo.Result;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -48,9 +49,11 @@ import java.util.Map;
  * Created by hs on 2016-01-09.
  */
 public class ImageFragment extends Fragment {
+
     TextView tv = null;
     String jsonString = null;
-    private final String server_url = "http://192.168.0.28:8080/mobile.jsp";
+    Gson gson=null;
+    private final String server_url = "http://192.168.0.3:8080/mobile.jsp";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,7 +61,7 @@ public class ImageFragment extends Fragment {
 
         tv = (TextView) rootView.findViewById(R.id.textView);
 
-        Gson gson = new Gson();
+        gson = new Gson();
         Member member = new Member();
         member.setNickname("nick");
         member.setEmail("asd@asd.com");
@@ -72,14 +75,20 @@ public class ImageFragment extends Fragment {
             public void onClick(View v) {
                 RequestQueue queue = Volley.newRequestQueue(getActivity());
 
-                StringRequest postRequest = new StringRequest(Request.Method.GET, server_url,
-                        new Response.Listener<String>()
+                JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.GET, server_url,null,
+                        new Response.Listener<JSONObject>()
                         {
                             @Override
-                            public void onResponse(String response) {
+                            public void onResponse(JSONObject response) {
                                 // response
                                 Log.d("success","done");
-                                tv.setText(response.toString());
+                                Result result=gson.fromJson(response.toString(),Result.class);
+                                if(result.getResult().equals("1")){
+
+                                    tv.setText("성공");
+                                }else{
+                                    tv.setText("실패");
+                                }
 
                             }
                         },
