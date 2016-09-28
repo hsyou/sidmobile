@@ -174,6 +174,8 @@ gson=new Gson();
                                     Result result=gson.fromJson(response.toString(),Result.class);
                                     if(result.getResult().equals("1")){
 
+                                        getFragmentManager().beginTransaction().replace(R.id.containerView,new SignInFragment()).commit();
+
                                     }else{
                                         Toast.makeText(getActivity(), "가입 실패.", Toast.LENGTH_SHORT).show();
                                     }
@@ -199,7 +201,6 @@ gson=new Gson();
                     };
                     queue.add(postRequest);
 
-                    getFragmentManager().beginTransaction().replace(R.id.containerView,new HomeFragment()).commit();
                 }
 
             }

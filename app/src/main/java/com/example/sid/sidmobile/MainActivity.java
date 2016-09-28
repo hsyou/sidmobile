@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ import com.example.sid.sidmobile.info.InfoTab;
 import com.example.sid.sidmobile.make.MakeTab;
 import com.example.sid.sidmobile.member.FindFragment;
 import com.example.sid.sidmobile.member.JoinFragment;
+import com.example.sid.sidmobile.member.SignInFragment;
 import com.example.sid.sidmobile.proxy.ProxyTab;
 import com.example.sid.sidmobile.service.ServiceFragment;
 
@@ -74,6 +76,10 @@ public class MainActivity extends AppCompatActivity
 
 
 
+
+
+
+
         final TextView mTextView = (TextView) findViewById(R.id.text);
 
        /* fragmentManager=getSupportFragmentManager();
@@ -102,7 +108,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 drawer.closeDrawers();
-                Toast.makeText(MainActivity.this, "Sign in", Toast.LENGTH_SHORT).show();
+                setTitle("Sign in");
+                FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
+                xfragmentTransaction.replace(R.id.containerView, new SignInFragment()).commit();
             }
         });
         Button btn_find = (Button)headerLayout.findViewById(R.id.btn_find);
