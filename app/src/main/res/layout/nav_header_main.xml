@@ -25,6 +25,13 @@
             android:id="@+id/btn_signIn"
             android:layout_weight="1" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:id="@+id/btn_logout"
+            android:layout_weight="1" />
+
         <TextView
             android:gravity="right"
             android:textSize="30sp"
@@ -33,7 +40,6 @@
             android:layout_weight="2"
             android:text="x"
             android:id="@+id/btn_drawer_close"/>
-
 
 
     </LinearLayout>
