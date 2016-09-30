@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ import com.example.sid.sidmobile.info.InfoTab;
 import com.example.sid.sidmobile.make.MakeTab;
 import com.example.sid.sidmobile.member.FindFragment;
 import com.example.sid.sidmobile.member.JoinFragment;
+import com.example.sid.sidmobile.member.SignInFragment;
 import com.example.sid.sidmobile.proxy.ProxyTab;
 import com.example.sid.sidmobile.service.ServiceFragment;
 
@@ -42,7 +44,12 @@ public class MainActivity extends AppCompatActivity
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     DrawerLayout drawer;
-
+    SessionManager sessionManager;
+    Button btn_join;
+    Button btn_signin;
+    Button btn_logout;
+    Button btn_find;
+    TextView btn_close;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //session
+        sessionManager=new SessionManager(this);
 /*
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -71,11 +81,6 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
-
-        final TextView mTextView = (TextView) findViewById(R.id.text);
-
        /* fragmentManager=getSupportFragmentManager();
         fragmentTransaction=fragmentManager.beginTransaction();
        */
@@ -85,7 +90,7 @@ public class MainActivity extends AppCompatActivity
         View headerLayout =
                 navigationView.getHeaderView(0);
 
-        Button btn_join = (Button)headerLayout.findViewById(R.id.btn_join);
+        btn_join = (Button)headerLayout.findViewById(R.id.btn_join);
 
         btn_join.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,15 +102,17 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        Button btn_signin = (Button)headerLayout.findViewById(R.id.btn_signIn);
+       btn_signin = (Button)headerLayout.findViewById(R.id.btn_signIn);
         btn_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawer.closeDrawers();
-                Toast.makeText(MainActivity.this, "Sign in", Toast.LENGTH_SHORT).show();
+                setTitle("Sign in");
+                FragmentTransaction xfragmentTransaction = fragmentManager.beginTransaction();
+                xfragmentTransaction.replace(R.id.containerView, new SignInFragment()).commit();
             }
         });
-        Button btn_find = (Button)headerLayout.findViewById(R.id.btn_find);
+        btn_find = (Button)headerLayout.findViewById(R.id.btn_find);
         btn_find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,6 +122,36 @@ public class MainActivity extends AppCompatActivity
                 xfragmentTransaction.replace(R.id.containerView, new FindFragment()).commit();
             }
         });
+
+        btn_close=(TextView) headerLayout.findViewById(R.id.btn_drawer_close);
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawers();
+            }
+        });
+
+        btn_logout=(Button)headerLayout.findViewById(R.id.btn_logout);
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sessionManager.logoutUser();
+            }
+        });
+
+
+        if(!sessionManager.isLoggedIn()){
+
+            btn_logout.setVisibility(View.VISIBLE);
+            btn_join.setVisibility(View.GONE);
+
+            Toast.makeText(MainActivity.this, "로그인중", Toast.LENGTH_SHORT).show();
+        }else{
+            btn_join.setVisibility(View.VISIBLE);
+            btn_logout.setVisibility(View.GONE);
+            Toast.makeText(MainActivity.this, "안로그인중", Toast.LENGTH_SHORT).show();
+        }
+
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
